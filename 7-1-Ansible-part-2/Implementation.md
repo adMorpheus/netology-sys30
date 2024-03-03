@@ -25,22 +25,67 @@
 а так же тегировано по пунктам для простоты запуска отдельных этапов.
 
 ### Задание 1
-
+## Пункт 1
 ![img.png](img/img1_1_0.png)
 ![img.png](img/img1_1_1.png)
 
 ```
-Поле для вставки кода...
-....
-....
-....
-....
+    - name: Download archived file
+      ansible.builtin.get_url:
+        url: https://downloads.apache.org/kafka/3.7.0/kafka-3.7.0-src.tgz
+        dest: ./build/
+      tags: t1p1
+
+    - name: Create a directory
+      ansible.builtin.file:
+        path: ./build/unarchived
+        state: directory
+      tags: t1p1
+
+    - name: Extract kafka-3.7.0-src.tgz
+      ansible.builtin.unarchive:
+        src: ./build/kafka-3.7.0-src.tgz
+        dest: ./build/unarchived
+      tags: t1p1
 ```
+## Пункт 2
+![img.png](img/img1_2_0.png)
+![img.png](img/img1_2_1.png)
 
-`При необходимости прикрепитe сюда скриншоты
-![Название скриншота 1](ссылка на скриншот 1)`
+```
+    - name: Install tuned
+      apt:
+        name: tuned
+        state: present
+        update_cache: yes
+      tags: t1p2
 
+    - name: Start and enable tuned
+      ansible.builtin.service:
+        name: tuned
+        state: started
+        enabled: yes
+      tags: t1p2
 
+```
+## Пункт 3
+![img.png](img/img1_3_0.png)
+![img.png](img/img1_3_1.png)
+
+```
+- name: Task one
+  hosts: all
+  become: yes
+  vars:
+    - motd_text: "some text!!!"
+  tasks:
+  
+    - name: Create motd file with var content
+      ansible.builtin.copy:
+        content: '{{ motd_text }}'
+        dest: /etc/motd
+      tags: t1p3
+```
 ---
 
 ### Задание 2
