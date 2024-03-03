@@ -49,6 +49,7 @@
       tags: t1p1
 ```
 ## Пункт 2
+
 ![img.png](img/img1_2_0.png)
 ![img.png](img/img1_2_1.png)
 
