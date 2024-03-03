@@ -1,0 +1,12 @@
+<!DOCTYPE html>
+<html>
+<body>
+  <h1>Server Information:</h1>
+  <ul>
+    <li>CPU: {{ ansible_processor_cores }} cores</li>
+    <li>RAM: {{ ansible_memtotal_mb }} MB</li>
+    <li>First HDD Size: {{ ansible_mounts[1].size_total }} MB</li>
+    <li>IP Address: {{ ansible_default_ipv4.address }}</li>
+  </ul>
+</body>
+</html>

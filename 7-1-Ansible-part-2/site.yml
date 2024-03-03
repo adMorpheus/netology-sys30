@@ -1,0 +1,65 @@
+---
+- name: Task one
+  hosts: all
+  become: yes
+  vars:
+    - motd_text: "some text!!!"
+  tasks:
+
+    - name: Download archived file
+      ansible.builtin.get_url:
+        url: https://downloads.apache.org/kafka/3.7.0/kafka-3.7.0-src.tgz
+        dest: ./build/
+      tags: t1p1
+
+    - name: Create a directory
+      ansible.builtin.file:
+        path: ./build/unarchived
+        state: directory
+      tags: t1p1
+
+    - name: Extract kafka-3.7.0-src.tgz
+      ansible.builtin.unarchive:
+        src: ./build/kafka-3.7.0-src.tgz
+        dest: ./build/unarchived
+      tags: t1p1
+
+    - name: Install tuned
+      apt:
+        name: tuned
+        state: present
+        update_cache: yes
+      tags: t1p2
+
+    - name: Start and enable tuned
+      ansible.builtin.service:
+        name: tuned
+        state: started
+        enabled: yes
+      tags: t1p2
+
+
+    - name: Create motd file with var content
+      ansible.builtin.copy:
+        content: '{{ motd_text }}'
+        dest: /etc/motd
+      tags: t1p3
+
+
+- name: Task two
+  hosts: all
+  become: yes
+  tags: task_two
+  tasks:
+
+    - name: change motd text
+      template:
+        src: motd.j2
+        dest: /etc/motd
+
+- name: Task three
+  hosts: all
+  become: yes
+  tags: task_three
+  roles:
+    - apache-deploy
