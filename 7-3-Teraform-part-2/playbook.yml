@@ -1,0 +1,15 @@
+- hosts: vm-1
+  remote_user: user
+  become: true
+  become_method: sudo
+  tasks:
+    - apt:
+        name: nginx
+        state: present
+        update-cache: yes
+    - copy:
+        content: '<p>New content</p>'
+        dest: /var/www/html/index.html
+    - service:
+        name: nginx
+        state: started
