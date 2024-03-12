@@ -6,4 +6,5 @@
 Деплой ansible:
 ![ansible](img/ansible.jpg)
 Работа nginx на удалённом хосте яндекса:
+
 ![result](img/result.jpg)
