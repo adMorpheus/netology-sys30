@@ -22,5 +22,24 @@
 
 ---
 ### Задание 1
+
+![task_one.jpg](img%2Ftask_one.jpg)
 ### Задание 2
-### Задание 3
+```
+stages:
+  - test
+  - build
+
+test:
+  stage: test
+  image: golang:1.17
+  script: 
+   - go test .
+
+build:
+  stage: build
+  image: docker:latest
+  script:
+   - docker build .
+```
+![img.png](img/img.png)
