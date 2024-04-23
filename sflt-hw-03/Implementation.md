@@ -12,7 +12,7 @@
 ![2-2.jpg](img%2F2-2.jpg)\
 crontab -e:
 ```
-50 14 * * * /home/administrator/backup.sh
+3 10 * * * /home/administrator/backup.sh
 ```
 
 
