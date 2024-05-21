@@ -3,7 +3,7 @@ Terraform Playbook:\
 Скриншот статуса балансировщика:\
 ![balanser.png](img%2Fbalanser.png)\
 Скриншот статуса целевой группы:\
-![target_group.png](img%2Ftarget_group.png)
-Скриншот страницы, которая открылась при запросе IP-адреса балансировщикаЖ\
+![target_group.png](img%2Ftarget_group.png)\
+Скриншот страницы, которая открылась при запросе IP-адреса балансировщика:\
 ![page.png](img%2Fpage.png)
 
