@@ -1,0 +1,28 @@
+version: '3.8'
+
+services:
+  replication-master:
+    image: mysql:8.3
+    container_name: replication-master
+    environment:
+      - MYSQL_ROOT_PASSWORD=123456
+    volumes:
+      - ./master_my.cnf:/etc/my.cnf
+    networks:
+      - default
+
+
+  replication-slave:
+    image: mysql:8.3
+    container_name: replication-slave
+    environment:
+      - MYSQL_ROOT_PASSWORD=123456
+    volumes:
+      - ./slave_my.cnf:/etc/my.cnf
+    networks:
+      - default
+
+networks:
+  default:
+    name: replication
+    driver: bridge
